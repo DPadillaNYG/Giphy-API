@@ -29,6 +29,9 @@ function makeButtons() {
     var $button = $("<button>")
       .addClass("topic-buttons")
       .attr("data-name", topics[i])
+      .attr("draggable", "true") // NEW
+      .attr("ondragstart", "drag(event)") // NEW
+      .attr("id", topics[i]) // NEW
       .text(topics[i]);
     $button.click(function() {
       coffeeWord = $(this).attr("data-name");
@@ -97,7 +100,7 @@ function formatUserInput() {
 }
 
 // This function allows the user to create a new button.
-function createNewButton() {
+function userCreatesButton() {
   $submitBtn.click(function(e) {
     e.preventDefault();
     if (formatUserInput() !== "" && !topics.includes(formatUserInput())) {
@@ -108,6 +111,21 @@ function createNewButton() {
   });
 }
 
+// NEW
+function drag(ev) {
+  ev.dataTransfer.setData("text", ev.target.id);
+}
+// NEW
+function allowDrop(ev) {
+  ev.preventDefault();
+}
+// NEW
+function drop(ev) {
+  ev.preventDefault();
+  var data = ev.dataTransfer.getData("text");
+  ev.currentTarget.appendChild(document.getElementById(data));
+}
+
 // Function Calls
 makeButtons();
-createNewButton();
+userCreatesButton();
