@@ -1,5 +1,5 @@
 html {
-  background-color: rgb(189, 189, 189);
+  background-color: rgb(206, 206, 206);
 }
 
 main {
@@ -60,11 +60,12 @@ header p {
 .topic-buttons {
   font-family: "Fredericka the Great", cursive;
   background: rgb(210, 177, 106, 0.8);
-  border: solid black 1px;
+  border: dotted black 2px;
   margin: 3px;
   border-radius: 5px;
   outline-color: rgb(40, 98, 61);
   min-height: 32px;
+  cursor: pointer;
 }
 
 .topic-buttons:focus {
@@ -106,6 +107,7 @@ header p {
   background: lightgrey;
   border-radius: 16px;
   font-variant: petite-caps;
+  cursor: pointer;
 }
 
 #coffee-pic {
@@ -147,6 +149,7 @@ header p {
   justify-self: center;
   height: 200px;
   width: 200px;
+  cursor: pointer;
 }
 
 .gif-formatting:nth-child(odd) {

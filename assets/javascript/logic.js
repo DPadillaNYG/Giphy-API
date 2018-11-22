@@ -1,6 +1,9 @@
 // API KEY b9zNodUCVLZxeqWrmUupgRDDfjhFoh0x
-// http://api.giphy.com/v1/gifs/search?q=caramel%20macchiato&api_key=b9zNodUCVLZxeqWrmUupgRDDfjhFoh0x
+// http://api.giphy.com/v1/gifs/search?q=[search+word]&api_key=b9zNodUCVLZxeqWrmUupgRDDfjhFoh0x
 
+var coffeeWord;
+var queryURL;
+var $gifImg;
 var $favoritesDiv = $("#favorites");
 var $buttonsDiv = $("#dump-btns");
 var $gifsDiv = $("#dump-gifs");
@@ -19,6 +22,7 @@ var topics = [
   "caffeine"
 ];
 
+// This function creates the initial set of buttons on the page
 function makeButtons() {
   $buttonsDiv.empty();
   for (var i = 0; i < topics.length; i++) {
@@ -27,42 +31,63 @@ function makeButtons() {
       .attr("data-name", topics[i])
       .text(topics[i]);
     $button.click(function() {
-      var coffeeType = $(this).attr("data-name");
-      var queryURL =
+      coffeeWord = $(this).attr("data-name");
+      queryURL =
         "https:api.giphy.com/v1/gifs/search?q=" +
-        coffeeType +
+        coffeeWord +
         "&limit=10&api_key=b9zNodUCVLZxeqWrmUupgRDDfjhFoh0x";
-
-      $.ajax({
-        url: queryURL,
-        method: "GET"
-      }).then(function(response) {
-        for (var i = 0; i < topics.length; i++) {
-          var results = response.data;
-          var $gifImg = $("<img>");
-          $gifsDiv.append(
-            $gifImg
-              .attr("src", results[i].images.fixed_height.url)
-              .attr("alt", "Animated Gif of Coffee")
-              .addClass("gif-formatting")
-          );
-        }
-      });
+      displayGifs();
     });
     $buttonsDiv.append($button);
   }
 }
 
-// $.ajax({
-//   url: queryURL,
-//   method: "GET"
-// }).then(function(response) {
-//   var results = response.data;
-//   topics[i];
-// });
+// This function is used for displaying the GIFS onto the page
+function displayGifs() {
+  $.ajax({
+    url: queryURL,
+    method: "GET"
+  }).then(function(response) {
+    $gifsDiv.empty();
+    for (var i = 0; i < topics.length; i++) {
+      var results = response.data;
+      $gifImg = $("<img>");
+      var animateUrl = results[i].images.fixed_height.url;
+      var stillUrl = results[i].images.fixed_height_still.url;
 
-// $button.on("click", ".topic-buttons", function() {});
+      $gifsDiv.append(
+        $gifImg.attr({
+          src: stillUrl,
+          alt: "Animated Gif of Coffee",
+          "data-state": "still",
+          "data-still": stillUrl,
+          "data-animate": animateUrl,
+          class: "gif-formatting"
+        })
+      );
+      animateGif();
+    }
+  });
+}
 
+// This function allows the user to animate and freeze the GIF
+function animateGif() {
+  $gifImg.on("click", function() {
+    var $state = $(this).attr("data-state");
+    var $animate = $(this).attr("data-animate");
+    var $still = $(this).attr("data-still");
+
+    if ($state === "still") {
+      $(this).attr("src", $animate);
+      $(this).attr("data-state", "animated");
+    } else {
+      $(this).attr("src", $still);
+      $(this).attr("data-state", "still");
+    }
+  });
+}
+
+// This function cleans up the user input.
 function formatUserInput() {
   var userInput = $userInput
     .val()
@@ -71,13 +96,18 @@ function formatUserInput() {
   return userInput;
 }
 
-$submitBtn.click(function(e) {
-  e.preventDefault();
-  if (formatUserInput() !== "" && !topics.includes(formatUserInput())) {
-    var topic = formatUserInput();
-    topics.push(topic);
-    makeButtons();
-  }
-});
+// This function allows the user to create a new button.
+function createNewButton() {
+  $submitBtn.click(function(e) {
+    e.preventDefault();
+    if (formatUserInput() !== "" && !topics.includes(formatUserInput())) {
+      var topic = formatUserInput();
+      topics.push(topic);
+      makeButtons();
+    }
+  });
+}
 
+// Function Calls
 makeButtons();
+createNewButton();
