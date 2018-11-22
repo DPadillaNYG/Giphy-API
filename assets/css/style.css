@@ -38,23 +38,38 @@ header p {
   display: grid;
   grid-auto-columns: repeat(10, 1fr);
   grid-auto-columns: 1fr 1fr;
-  background: rgb(217, 189, 116, 0.8);
+  background: rgb(210, 177, 106, 0.8);
   border-radius: 5px;
-  height: 50px;
+  min-height: 50px;
   margin: 40px 20px 20px 20px;
   padding: 20px;
 }
 
-#dumpBtns {
+#dump-btns {
   box-sizing: border-box;
   display: grid;
-  grid-auto-columns: repeat(10, 1fr);
-  grid-auto-columns: 1fr 1fr;
   background: rgba(255, 255, 255, 0.8);
   border-radius: 5px;
-  height: 50px;
   margin: 20px 20px 20px 20px;
-  padding: 20px;
+  padding: 5px;
+  min-height: 50px;
+  grid-template-columns: repeat(auto-fit, minmax(100px, 1fr));
+  word-wrap: break-word;
+}
+
+.topic-buttons {
+  font-family: "Fredericka the Great", cursive;
+  background: rgb(210, 177, 106, 0.8);
+  border: solid black 1px;
+  margin: 3px;
+  border-radius: 5px;
+  outline-color: rgb(40, 98, 61);
+  min-height: 32px;
+}
+
+.topic-buttons:focus {
+  box-shadow: 0 0 0 1.5px rgb(40, 98, 61);
+  border-radius: 2px;
 }
 
 #form {
@@ -113,16 +128,29 @@ header p {
   opacity: 0.8;
 }
 
-#dumpGifs {
+#dump-gifs {
   box-sizing: border-box;
   display: grid;
-  grid-auto-columns: 1fr 1fr 1fr 1fr 1fr;
-  grid-auto-columns: 1fr 1fr;
   background: rgba(40, 98, 61, 0.8);
   border-radius: 5px;
-  height: 200px;
+  min-height: 200px;
   margin: 20px 20px 40px 20px;
   padding: 20px;
+  grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+  grid-gap: 20px;
+}
+
+.gif-formatting {
+  border: solid rgb(182, 182, 182) 10px;
+  border-radius: 5px;
+  display: flex;
+  justify-self: center;
+  height: 200px;
+  width: 200px;
+}
+
+.gif-formatting:nth-child(odd) {
+  border: solid rgb(210, 177, 106, 0.8) 10px;
 }
 
 #sticky-footer {
@@ -150,5 +178,14 @@ footer {
 
   footer {
     font-size: 25px;
+  }
+
+  .gif-formatting {
+    height: 300px;
+    width: 300px;
+  }
+
+  #dump-gifs {
+    grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
   }
 }
