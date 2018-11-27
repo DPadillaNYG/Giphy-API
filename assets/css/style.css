@@ -4,6 +4,8 @@ html {
 
 main {
   position: relative;
+  width: 98%;
+  margin: auto;
 }
 
 header {
@@ -33,12 +35,27 @@ header p {
   margin: 5px;
 }
 
+#favorites-label {
+  background: rgb(210, 177, 106);
+  font-family: "Special Elite", cursive;
+  font-weight: bold;
+  margin: 40px 20px -11px 20px;
+  display: inline-flex;
+  padding: 0px 7px;
+  border-radius: 20%;
+  position: relative;
+  z-index: -1;
+  font-size: 20px;
+  align-items: center;
+  height: 40px;
+}
+
 #favorites {
   box-sizing: border-box;
   display: grid;
   background: rgb(210, 177, 106, 0.8);
   border-radius: 5px;
-  margin: 40px 20px 20px 20px;
+  margin: 0 20px 20px 20px;
   padding: 5px;
   min-height: 50px;
   grid-template-columns: repeat(auto-fit, minmax(100px, 1fr));
@@ -88,7 +105,7 @@ header p {
   background: rgba(75, 75, 75, 0.8);
   border-radius: 5px;
   height: 140px;
-  width: 360px;
+  width: 352px;
   margin: auto;
   padding: 20px;
 }

@@ -36,7 +36,7 @@ function makeButtons() {
     $button.click(function() {
       coffeeWord = $(this).attr("data-name");
       queryURL =
-        "https:api.giphy.com/v1/gifs/search?q=" +
+        "https://api.giphy.com/v1/gifs/search?q=" +
         coffeeWord +
         "&limit=10&api_key=b9zNodUCVLZxeqWrmUupgRDDfjhFoh0x";
       displayGifs();
