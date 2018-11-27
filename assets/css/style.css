@@ -13,7 +13,7 @@ header {
   background: url(../images/chalkboard.jpg);
   background-size: cover;
   height: 200px;
-  border-bottom: solid rgb(40, 98, 61) 10px;
+  border-bottom: solid rgb(76, 120, 90) 10px;
   display: flex;
   flex-direction: column;
   justify-content: center;
@@ -36,13 +36,15 @@ header p {
 }
 
 #favorites-label {
-  background: rgb(210, 177, 106);
+  background: rgb(209, 183, 127);
   font-family: "Special Elite", cursive;
   font-weight: bold;
   margin: 40px 20px -11px 20px;
   display: inline-flex;
-  padding: 0px 7px;
-  border-radius: 20%;
+  padding: 4px 0;
+  width: 132px;
+  justify-content: center;
+  border-radius: 8px;
   position: relative;
   z-index: -1;
   font-size: 20px;
@@ -53,7 +55,7 @@ header p {
 #favorites {
   box-sizing: border-box;
   display: grid;
-  background: rgb(210, 177, 106, 0.8);
+  background: rgb(209, 183, 127);
   border-radius: 5px;
   margin: 0 20px 20px 20px;
   padding: 5px;
@@ -62,12 +64,29 @@ header p {
   word-wrap: break-word;
 }
 
+#buttons-label {
+  background: rgb(245, 245, 245);
+  font-family: "Special Elite", cursive;
+  font-weight: bold;
+  margin: 20px 20px -11px 20px;
+  display: inline-flex;
+  padding: 4px 0;
+  width: 132px;
+  justify-content: center;
+  border-radius: 8px;
+  position: relative;
+  z-index: -1;
+  font-size: 20px;
+  align-items: center;
+  height: 40px;
+}
+
 #dump-btns {
   box-sizing: border-box;
   display: grid;
-  background: rgba(255, 255, 255, 0.8);
+  background: rgb(245, 245, 245);
   border-radius: 5px;
-  margin: 20px 20px 20px 20px;
+  margin: 0 20px 20px 20px;
   padding: 5px;
   min-height: 50px;
   grid-template-columns: repeat(auto-fit, minmax(100px, 1fr));
@@ -77,17 +96,17 @@ header p {
 .topic-buttons {
   font-family: "Special Elite", cursive;
   font-weight: bold;
-  background: rgb(210, 177, 106, 0.8);
+  background: rgb(209, 183, 127);
   border: dotted black 2px;
   margin: 3px;
   border-radius: 5px;
-  outline-color: rgb(40, 98, 61);
+  outline-color: rgb(76, 120, 90);
   min-height: 32px;
   cursor: pointer;
 }
 
 .topic-buttons:focus {
-  box-shadow: 0 0 0 1.5px rgb(40, 98, 61);
+  box-shadow: 0 0 0 1.5px rgb(76, 120, 90);
   border-radius: 2px;
 }
 
@@ -102,7 +121,7 @@ header p {
   color: white;
   font-family: "Fredericka the Great", cursive;
   font-size: 20px;
-  background: rgba(75, 75, 75, 0.8);
+  background: rgb(101, 101, 101);
   border-radius: 5px;
   height: 140px;
   width: 352px;
@@ -148,20 +167,38 @@ header p {
   opacity: 0.8;
 }
 
+#gifs-label {
+  background: rgb(76, 120, 90);
+  font-family: "Special Elite", cursive;
+  font-weight: bold;
+  margin: 20px 20px -11px 20px;
+  display: inline-flex;
+  padding: 4px 0;
+  width: 132px;
+  justify-content: center;
+  border-radius: 8px;
+  position: relative;
+  z-index: -1;
+  font-size: 20px;
+  align-items: center;
+  height: 40px;
+  color: white;
+}
+
 #dump-gifs {
   box-sizing: border-box;
   display: grid;
-  background: rgba(40, 98, 61, 0.8);
+  background: rgb(76, 120, 90);
   border-radius: 5px;
   min-height: 200px;
-  margin: 20px 20px 40px 20px;
+  margin: 0 20px 40px 20px;
   padding: 20px;
   grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
   grid-gap: 20px;
 }
 
 .gif-formatting {
-  border: solid rgb(182, 182, 182) 10px;
+  border: solid rgb(206, 206, 206) 10px;
   border-radius: 5px;
   display: flex;
   justify-self: center;
@@ -171,7 +208,7 @@ header p {
 }
 
 .gif-formatting:nth-child(odd) {
-  border: solid rgb(210, 177, 106, 0.8) 10px;
+  border: solid rgb(209, 183, 127) 10px;
 }
 
 #sticky-footer {
@@ -183,7 +220,7 @@ footer {
   height: 80px;
   background: url(../images/chalkboard.jpg);
   background-size: cover;
-  border-top: solid rgb(40, 98, 61) 10px;
+  border-top: solid rgb(76, 120, 90) 10px;
   font-size: 30px;
   font-family: "Fredericka the Great", cursive;
   color: white;
