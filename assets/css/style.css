@@ -223,7 +223,7 @@ header p {
 
 .fa-download:before {
   color: white;
-  background-color: #5a5a5a;
+  background-color: rgb(76, 120, 90);
   padding: 7px;
   border-radius: 5px;
 }

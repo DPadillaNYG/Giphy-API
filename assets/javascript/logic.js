@@ -136,7 +136,7 @@ function drop(ev) {
   ev.preventDefault();
   var data = ev.dataTransfer.getData("text");
   ev.currentTarget.appendChild(document.getElementById(data));
-  console.log(ev.target.id);
+  console.log(childNodes);
 }
 
 // Function Calls
