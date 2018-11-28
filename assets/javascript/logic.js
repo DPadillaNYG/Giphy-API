@@ -55,19 +55,31 @@ function displayGifs() {
     for (var i = 0; i < topics.length; i++) {
       var results = response.data;
       $gifImg = $("<img>");
+      $gifImg.attr({
+        src: stillUrl,
+        alt: "Animated Gif of Coffee",
+        "data-state": "still",
+        "data-still": stillUrl,
+        "data-animate": animateUrl,
+        class: "gif-resizing"
+      });
       var animateUrl = results[i].images.fixed_height.url;
       var stillUrl = results[i].images.fixed_height_still.url;
 
-      $gifsDiv.append(
-        $gifImg.attr({
-          src: stillUrl,
-          alt: "Animated Gif of Coffee",
-          "data-state": "still",
-          "data-still": stillUrl,
-          "data-animate": animateUrl,
-          class: "gif-formatting"
-        })
-      );
+      // Creating Download Icon
+      var $newDiv = $("<div>")
+        .css("position", "relative")
+        .addClass("gif-formatting");
+      $newDiv.append($gifImg);
+      var $downloadIcon = $("<a>").attr({
+        href: results[i].images.fixed_height.url,
+        id: "download-formatting",
+        download: ""
+      });
+      $downloadIcon.append($("<i>").addClass("fas fa-download"));
+      $newDiv.append($downloadIcon);
+      $gifsDiv.append($newDiv);
+
       animateGif();
     }
   });

@@ -3,7 +3,6 @@ html {
 }
 
 main {
-  position: relative;
   width: 98%;
   margin: auto;
 }
@@ -37,19 +36,19 @@ header p {
 
 #favorites-label {
   background: rgb(209, 183, 127);
-  font-family: "Special Elite", cursive;
-  font-weight: bold;
-  margin: 40px 20px -11px 20px;
+  margin: 40px 20px -18px 20px;
   display: inline-flex;
-  padding: 4px 0;
-  width: 132px;
+  width: 140px;
+  padding-top: 4px;
   justify-content: center;
-  border-radius: 8px;
+  border-radius: 12px;
   position: relative;
   z-index: -1;
-  font-size: 20px;
-  align-items: center;
   height: 40px;
+  font-size: 23px;
+  font-family: "Titillium Web", sans-serif;
+  align-items: flex-start;
+  color: white;
 }
 
 #favorites {
@@ -64,21 +63,25 @@ header p {
   word-wrap: break-word;
 }
 
+#favorites button {
+  background-color: rgb(245, 245, 245);
+}
+
 #buttons-label {
   background: rgb(245, 245, 245);
-  font-family: "Special Elite", cursive;
-  font-weight: bold;
-  margin: 20px 20px -11px 20px;
+  margin: 0 20px -18px 20px;
   display: inline-flex;
-  padding: 4px 0;
-  width: 132px;
+  width: 140px;
+  padding-top: 4px;
   justify-content: center;
-  border-radius: 8px;
+  border-radius: 12px;
   position: relative;
   z-index: -1;
-  font-size: 20px;
-  align-items: center;
   height: 40px;
+  font-size: 23px;
+  font-family: "Titillium Web", sans-serif;
+  align-items: flex-start;
+  color: rgb(209, 183, 127);
 }
 
 #dump-btns {
@@ -120,13 +123,14 @@ header p {
   text-align: center;
   color: white;
   font-family: "Fredericka the Great", cursive;
-  font-size: 20px;
-  background: rgb(101, 101, 101);
   border-radius: 5px;
   height: 140px;
   width: 352px;
   margin: auto;
   padding: 20px;
+  background: url(../images/chalkboard.jpg);
+  background-size: cover;
+  font-size: 22px;
 }
 
 #user-input {
@@ -141,10 +145,12 @@ header p {
   margin: 5px;
   width: 75px;
   font-size: 16px;
-  background: lightgrey;
+  font-weight: bold;
+  background: white;
   border-radius: 16px;
   font-variant: petite-caps;
   cursor: pointer;
+  color: rgb(84, 84, 84);
 }
 
 #coffee-pic {
@@ -154,7 +160,6 @@ header p {
   right: 7px;
   top: 30px;
   transform: rotate(13deg);
-  opacity: 0.8;
 }
 
 #coffee-beans-pic {
@@ -164,25 +169,23 @@ header p {
   left: 4px;
   top: 41px;
   transform: rotate(-13deg);
-  opacity: 0.8;
 }
 
 #gifs-label {
   background: rgb(76, 120, 90);
-  font-family: "Special Elite", cursive;
-  font-weight: bold;
-  margin: 20px 20px -11px 20px;
+  margin: -6px 20px -18px 20px;
   display: inline-flex;
-  padding: 4px 0;
-  width: 132px;
+  width: 140px;
+  padding-top: 4px;
   justify-content: center;
-  border-radius: 8px;
+  border-radius: 12px;
   position: relative;
   z-index: -1;
-  font-size: 20px;
-  align-items: center;
   height: 40px;
-  color: white;
+  font-size: 23px;
+  font-family: "Titillium Web", sans-serif;
+  align-items: flex-start;
+  color: rgb(206, 206, 206);
 }
 
 #dump-gifs {
@@ -197,18 +200,38 @@ header p {
   grid-gap: 20px;
 }
 
-.gif-formatting {
-  border: solid rgb(206, 206, 206) 10px;
-  border-radius: 5px;
-  display: flex;
-  justify-self: center;
+.gif-resizing {
   height: 200px;
   width: 200px;
   cursor: pointer;
 }
 
+.gif-formatting {
+  border: solid rgb(206, 206, 206) 10px;
+  border-radius: 5px;
+  display: flex;
+  position: relative;
+  justify-self: center;
+  height: 200px;
+  width: 200px;
+}
+
 .gif-formatting:nth-child(odd) {
   border: solid rgb(209, 183, 127) 10px;
+}
+
+.fa-download:before {
+  color: white;
+  background-color: #5a5a5a;
+  padding: 7px;
+  border-radius: 5px;
+}
+
+#download-formatting {
+  position: absolute;
+  bottom: 11px;
+  right: 5px;
+  z-index: 2;
 }
 
 #sticky-footer {
@@ -238,6 +261,11 @@ footer {
     font-size: 25px;
   }
 
+  .gif-resizing {
+    height: 300px;
+    width: 300px;
+  }
+
   .gif-formatting {
     height: 300px;
     width: 300px;
@@ -245,5 +273,11 @@ footer {
 
   #dump-gifs {
     grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+  }
+}
+
+@media only screen and (max-width: 860px) {
+  #gifs-label {
+    margin: 20px 20px -11px 20px;
   }
 }
