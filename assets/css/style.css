@@ -36,7 +36,7 @@ header p {
 
 #favorites-label {
   background: rgb(209, 183, 127);
-  margin: 40px 20px -18px 20px;
+  margin: 20px 20px -18px 20px;
   display: inline-flex;
   width: 140px;
   padding-top: 4px;
@@ -64,11 +64,11 @@ header p {
 }
 
 #favorites button {
-  background-color: rgb(245, 245, 245);
+  background-color: white;
 }
 
 #buttons-label {
-  background: rgb(245, 245, 245);
+  background: white;
   margin: 0 20px -18px 20px;
   display: inline-flex;
   width: 140px;
@@ -87,7 +87,7 @@ header p {
 #dump-btns {
   box-sizing: border-box;
   display: grid;
-  background: rgb(245, 245, 245);
+  background: white;
   border-radius: 5px;
   margin: 0 20px 20px 20px;
   padding: 5px;
@@ -124,6 +124,7 @@ header p {
   color: white;
   font-family: "Fredericka the Great", cursive;
   border-radius: 5px;
+  border: solid white 5px;
   height: 140px;
   width: 352px;
   margin: auto;
@@ -194,7 +195,7 @@ header p {
   background: rgb(76, 120, 90);
   border-radius: 5px;
   min-height: 200px;
-  margin: 0 20px 40px 20px;
+  margin: 0 20px 20px 20px;
   padding: 20px;
   grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
   grid-gap: 20px;
@@ -207,7 +208,7 @@ header p {
 }
 
 .gif-formatting {
-  border: solid rgb(206, 206, 206) 10px;
+  border: solid white 10px;
   border-radius: 5px;
   display: flex;
   position: relative;

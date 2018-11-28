@@ -72,9 +72,9 @@ function displayGifs() {
         .addClass("gif-formatting");
       $newDiv.append($gifImg);
       var $downloadIcon = $("<a>").attr({
-        href: results[i].images.fixed_height.url,
+        href: results[i].images.original.url,
         id: "download-formatting",
-        download: "coffee gif"
+        download: ""
       });
       $downloadIcon.append($("<i>").addClass("fas fa-download"));
       $newDiv.append($downloadIcon);
