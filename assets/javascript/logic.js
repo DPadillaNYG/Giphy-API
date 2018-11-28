@@ -29,9 +29,9 @@ function makeButtons() {
     var $button = $("<button>")
       .addClass("topic-buttons")
       .attr("data-name", topics[i])
-      .attr("draggable", "true") // NEW
-      .attr("ondragstart", "drag(event)") // NEW
-      .attr("id", topics[i]) // NEW
+      .attr("draggable", "true")
+      .attr("ondragstart", "drag(event)")
+      .attr("id", topics[i])
       .text(topics[i]);
     $button.click(function() {
       coffeeWord = $(this).attr("data-name");
@@ -54,6 +54,8 @@ function displayGifs() {
     $gifsDiv.empty();
     for (var i = 0; i < topics.length; i++) {
       var results = response.data;
+      var animateUrl = results[i].images.fixed_height.url;
+      var stillUrl = results[i].images.fixed_height_still.url;
       $gifImg = $("<img>");
       $gifImg.attr({
         src: stillUrl,
@@ -63,8 +65,6 @@ function displayGifs() {
         "data-animate": animateUrl,
         class: "gif-resizing"
       });
-      var animateUrl = results[i].images.fixed_height.url;
-      var stillUrl = results[i].images.fixed_height_still.url;
 
       // Creating Download Icon
       var $newDiv = $("<div>")
@@ -74,7 +74,7 @@ function displayGifs() {
       var $downloadIcon = $("<a>").attr({
         href: results[i].images.fixed_height.url,
         id: "download-formatting",
-        download: ""
+        download: "coffee gif"
       });
       $downloadIcon.append($("<i>").addClass("fas fa-download"));
       $newDiv.append($downloadIcon);
@@ -123,15 +123,15 @@ function userCreatesButton() {
   });
 }
 
-// NEW
+// Drag & Drop Functions
 function drag(ev) {
   ev.dataTransfer.setData("text", ev.target.id);
 }
-// NEW
+
 function allowDrop(ev) {
   ev.preventDefault();
 }
-// NEW
+
 function drop(ev) {
   ev.preventDefault();
   var data = ev.dataTransfer.getData("text");
