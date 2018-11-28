@@ -21,6 +21,7 @@ var topics = [
   "cafe",
   "caffeine"
 ];
+var favTopics = [];
 
 // This function creates the initial set of buttons on the page
 function makeButtons() {
@@ -52,7 +53,7 @@ function displayGifs() {
     method: "GET"
   }).then(function(response) {
     $gifsDiv.empty();
-    for (var i = 0; i < topics.length; i++) {
+    for (var i = 0; i < 10; i++) {
       var results = response.data;
       var animateUrl = results[i].images.fixed_height.url;
       var stillUrl = results[i].images.fixed_height_still.url;
@@ -115,7 +116,11 @@ function formatUserInput() {
 function userCreatesButton() {
   $submitBtn.click(function(e) {
     e.preventDefault();
-    if (formatUserInput() !== "" && !topics.includes(formatUserInput())) {
+    if (
+      formatUserInput() !== "" &&
+      !topics.includes(formatUserInput()) &&
+      !favTopics.includes(formatUserInput())
+    ) {
       var topic = formatUserInput();
       topics.push(topic);
       makeButtons();
@@ -136,7 +141,24 @@ function drop(ev) {
   ev.preventDefault();
   var data = ev.dataTransfer.getData("text");
   ev.currentTarget.appendChild(document.getElementById(data));
-  console.log(childNodes);
+  // Everytime an item is dropped into the favorites section, this for loop
+  // checks the button ids in that section and removes it from the topics array
+  // if there is a match.
+  for (
+    var i = 0;
+    i < document.getElementById("favorites").childNodes.length;
+    i++
+  ) {
+    if (
+      topics.includes(document.getElementById("favorites").childNodes[i].id)
+    ) {
+      topics.splice(
+        topics.indexOf(document.getElementById("favorites").childNodes[i].id),
+        1
+      );
+      favTopics.push(document.getElementById("favorites").childNodes[i].id);
+    }
+  }
 }
 
 // Function Calls
