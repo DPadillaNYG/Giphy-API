@@ -1,5 +1,5 @@
 // API KEY b9zNodUCVLZxeqWrmUupgRDDfjhFoh0x
-// http://api.giphy.com/v1/gifs/search?q=[search+word]&api_key=b9zNodUCVLZxeqWrmUupgRDDfjhFoh0x
+// http://api.giphy.com/v1/gifs/search?q=coffee&limit=1&api_key=b9zNodUCVLZxeqWrmUupgRDDfjhFoh0x
 
 var coffeeWord;
 var queryURL;
@@ -57,6 +57,7 @@ function displayGifs() {
       var results = response.data;
       var animateUrl = results[i].images.fixed_height.url;
       var stillUrl = results[i].images.fixed_height_still.url;
+      let myurl = results[i].images.fixed_height.url;
       $gifImg = $("<img>");
       $gifImg.attr({
         src: stillUrl,
@@ -72,11 +73,11 @@ function displayGifs() {
         .css("position", "relative")
         .addClass("gif-formatting");
       $newDiv.append($gifImg);
-      var $downloadIcon = $("<a>").attr({
-        href: results[i].images.original.url,
-        id: "download-formatting",
-        download: ""
-      });
+      var $downloadIcon = $("<a>")
+        .attr("id", "download-formatting")
+        .click(function() {
+          downloadResource(myurl);
+        });
       $downloadIcon.append($("<i>").addClass("fas fa-download"));
       $newDiv.append($downloadIcon);
       $gifsDiv.append($newDiv);
@@ -159,6 +160,36 @@ function drop(ev) {
       favTopics.push(document.getElementById("favorites").childNodes[i].id);
     }
   }
+}
+
+// The functions below force the download on the gifs
+function forceDownload(blob, filename) {
+  var a = document.createElement("a");
+  a.download = filename;
+  a.href = blob;
+  a.click();
+}
+
+// Current blob size limit is around 500MB for browsers
+function downloadResource(url, filename) {
+  if (!filename)
+    filename = url
+      .split("\\")
+      .pop()
+      .split("/")
+      .pop();
+  fetch(url, {
+    headers: new Headers({
+      Origin: location.origin
+    }),
+    mode: "cors"
+  })
+    .then(response => response.blob())
+    .then(blob => {
+      let blobUrl = window.URL.createObjectURL(blob);
+      forceDownload(blobUrl, filename);
+    })
+    .catch(e => console.error(e));
 }
 
 // Function Calls

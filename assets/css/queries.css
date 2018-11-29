@@ -1,0 +1,71 @@
+@media only screen and (max-width: 860px) {
+  #gifs-label {
+    margin: 20px 20px -11px 20px;
+  }
+}
+
+@media only screen and (max-width: 499px) {
+  h1 {
+    font-size: 95px;
+  }
+
+  footer {
+    font-size: 25px;
+  }
+
+  .gif-resizing {
+    height: 300px;
+    width: 300px;
+  }
+
+  .gif-formatting {
+    height: 300px;
+    width: 300px;
+  }
+
+  #dump-gifs {
+    grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+  }
+}
+
+@media only screen and (max-width: 399px) {
+  h1 {
+    font-size: 80px;
+  }
+
+  footer {
+    font-size: 23px;
+  }
+
+  .gif-resizing {
+    height: 225px;
+    width: 225px;
+  }
+
+  .gif-formatting {
+    height: 225px;
+    width: 225px;
+  }
+
+  #dump-gifs {
+    grid-template-columns: repeat(auto-fit, minmax(225px, 1fr));
+  }
+
+  #form {
+    width: 274px;
+  }
+
+  #coffee-pic {
+    height: 55px;
+    width: 55px;
+    right: -2px;
+    top: 65px;
+  }
+
+  #coffee-beans-pic {
+    height: 40px;
+    width: 65px;
+    left: 0px;
+    top: 76px;
+  }
+}
