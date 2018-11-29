@@ -4,6 +4,7 @@
 var coffeeWord;
 var queryURL;
 var $gifImg;
+
 var $favoritesDiv = $("#favorites");
 var $buttonsDiv = $("#dump-btns");
 var $gifsDiv = $("#dump-gifs");
@@ -54,6 +55,7 @@ function displayGifs() {
   }).then(function(response) {
     $gifsDiv.empty();
     for (var i = 0; i < 10; i++) {
+      let count = i;
       var results = response.data;
       var animateUrl = results[i].images.fixed_height.url;
       var stillUrl = results[i].images.fixed_height_still.url;
@@ -62,10 +64,8 @@ function displayGifs() {
       $gifImg.attr({
         src: stillUrl,
         alt: "Animated Gif of Coffee",
-        "data-state": "still",
-        "data-still": stillUrl,
-        "data-animate": animateUrl,
-        class: "gif-resizing"
+        class: "gif-resizing",
+        id: "giffeeNumber_" + count
       });
 
       // Creating Download Icon
@@ -78,28 +78,37 @@ function displayGifs() {
         .click(function() {
           downloadResource(myurl);
         });
+      var $playbackBtn = $("<i>")
+        .addClass("far fa-play-circle")
+        .attr({
+          "data-state": "still",
+          "data-still": stillUrl,
+          "data-animate": animateUrl,
+          id: "playback-formatting"
+        })
+        .click(function() {
+          var $state = $(this).attr("data-state");
+          var $animate = $(this).attr("data-animate");
+          var $still = $(this).attr("data-still");
+          var $designatedGif = $("#giffeeNumber_" + count);
+
+          if ($state === "still") {
+            $designatedGif.attr("src", $animate);
+            $(this).attr("data-state", "animated");
+            $(this)
+              .removeClass("fa-play-circle")
+              .addClass("fa-pause-circle");
+          } else {
+            $designatedGif.attr("src", $still);
+            $(this).attr("data-state", "still");
+            $(this)
+              .removeClass("fa-pause-circle")
+              .addClass("fa-play-circle");
+          }
+        });
       $downloadIcon.append($("<i>").addClass("fas fa-download"));
-      $newDiv.append($downloadIcon);
+      $newDiv.append($downloadIcon).append($playbackBtn);
       $gifsDiv.append($newDiv);
-
-      animateGif();
-    }
-  });
-}
-
-// This function allows the user to animate and freeze the GIF
-function animateGif() {
-  $gifImg.on("click", function() {
-    var $state = $(this).attr("data-state");
-    var $animate = $(this).attr("data-animate");
-    var $still = $(this).attr("data-still");
-
-    if ($state === "still") {
-      $(this).attr("src", $animate);
-      $(this).attr("data-state", "animated");
-    } else {
-      $(this).attr("src", $still);
-      $(this).attr("data-state", "still");
     }
   });
 }
@@ -162,7 +171,7 @@ function drop(ev) {
   }
 }
 
-// The functions below force the download on the gifs
+// These functions below force the download on the gifs
 function forceDownload(blob, filename) {
   var a = document.createElement("a");
   a.download = filename;

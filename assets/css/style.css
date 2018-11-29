@@ -207,7 +207,6 @@ header p {
 .gif-resizing {
   height: 200px;
   width: 200px;
-  cursor: pointer;
 }
 
 .gif-formatting {
@@ -227,19 +226,40 @@ header p {
 .fa-download:before {
   color: white;
   background-color: rgb(76, 120, 90);
+  border: solid white 3px;
   padding: 7px;
   border-radius: 5px;
 }
 
 #download-formatting {
   position: absolute;
-  bottom: 11px;
+  bottom: 14.5px;
   right: 5px;
   z-index: 2;
+  cursor: pointer;
+  font-size: 12px;
 }
 
 #download-formatting:hover {
   transform: scale(1.1);
+}
+
+#playback-formatting {
+  position: absolute;
+  bottom: 4px;
+  left: 5px;
+  z-index: 2;
+  font-size: 26px;
+  background-color: white;
+  border-radius: 50%;
+  border: solid white 3px;
+  color: rgb(76, 120, 90);
+  cursor: pointer;
+}
+
+#playback-formatting:hover {
+  transform: rotate(360deg);
+  transition-duration: 1s;
 }
 
 #sticky-footer {
