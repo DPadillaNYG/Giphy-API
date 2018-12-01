@@ -1,15 +1,16 @@
-// API KEY b9zNodUCVLZxeqWrmUupgRDDfjhFoh0x
-// http://api.giphy.com/v1/gifs/search?q=coffee&limit=1&api_key=b9zNodUCVLZxeqWrmUupgRDDfjhFoh0x
-
+// API Variables
 var coffeeWord;
 var queryURL;
-var $gifImg;
 
+// DOM Variables
+var $gifImg;
 var $favoritesDiv = $("#favorites");
 var $buttonsDiv = $("#dump-btns");
 var $gifsDiv = $("#dump-gifs");
 var $userInput = $("#user-input");
 var $submitBtn = $("#submit-btn");
+
+// Array Variables
 var topics = [
   "cappuccino",
   "latte",
@@ -29,11 +30,13 @@ function makeButtons() {
   $buttonsDiv.empty();
   for (var i = 0; i < topics.length; i++) {
     var $button = $("<button>")
-      .addClass("topic-buttons")
-      .attr("data-name", topics[i])
-      .attr("draggable", "true")
-      .attr("ondragstart", "drag(event)")
-      .attr("id", topics[i])
+      .attr({
+        class: "topic-buttons",
+        id: topics[i],
+        "data-name": topics[i],
+        draggable: "true",
+        ondragstart: "drag(event)"
+      })
       .text(topics[i]);
     $button.click(function() {
       coffeeWord = $(this).attr("data-name");
@@ -53,13 +56,20 @@ function displayGifs() {
     url: queryURL,
     method: "GET"
   }).then(function(response) {
-    $gifsDiv.empty();
+    $gifsDiv.empty(); // Prevent Duplicate Creations
     for (var i = 0; i < 10; i++) {
-      let count = i;
+      let count = i; // Closure Variable
       var results = response.data;
       var animateUrl = results[i].images.fixed_height.url;
       var stillUrl = results[i].images.fixed_height_still.url;
-      let myurl = results[i].images.fixed_height.url;
+      let myurl = results[i].images.fixed_height.url; // Closure Variable
+
+      // Creating a new <div>
+      var $newDiv = $("<div>")
+        .css("position", "relative")
+        .addClass("gif-formatting");
+
+      // Creating the images for the gifs
       $gifImg = $("<img>");
       $gifImg.attr({
         src: stillUrl,
@@ -68,24 +78,23 @@ function displayGifs() {
         id: "giffeeNumber_" + count
       });
 
-      // Creating Download Icon
-      var $newDiv = $("<div>")
-        .css("position", "relative")
-        .addClass("gif-formatting");
-      $newDiv.append($gifImg);
+      // Creating the download icons for the gifs
       var $downloadIcon = $("<a>")
         .attr("id", "download-formatting")
         .click(function() {
           downloadResource(myurl);
         });
+
+      // Creating the playback icons for the gifs
       var $playbackBtn = $("<i>")
-        .addClass("far fa-play-circle")
         .attr({
+          class: "far fa-play-circle",
           "data-state": "still",
           "data-still": stillUrl,
           "data-animate": animateUrl,
           id: "playback-formatting"
         })
+        // Function for animating the gifs on click
         .click(function() {
           var $state = $(this).attr("data-state");
           var $animate = $(this).attr("data-animate");
@@ -106,6 +115,8 @@ function displayGifs() {
               .addClass("fa-play-circle");
           }
         });
+
+      $newDiv.append($gifImg);
       $downloadIcon.append($("<i>").addClass("fas fa-download"));
       $newDiv.append($downloadIcon).append($playbackBtn);
       $gifsDiv.append($newDiv);
@@ -171,7 +182,7 @@ function drop(ev) {
   }
 }
 
-// These functions below force the download on the gifs
+// These workaround functions below force the download on the gifs
 function forceDownload(blob, filename) {
   var a = document.createElement("a");
   a.download = filename;
