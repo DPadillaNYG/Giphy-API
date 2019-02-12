@@ -1,10 +1,10 @@
-# Website w/ API Implementation
+# Giffeine
 
 A website utilizing the Giphy API with AJAX.
 
 ### Link to Game
 
-https://dpadillanyg.github.io/Giphy-API/
+https://dpadillajs.github.io/Giffeine/
 
 **Browser compatibility checked with:**
 
@@ -15,11 +15,10 @@ https://dpadillanyg.github.io/Giphy-API/
 ### Assignment
 
 I was tasked with having to make a website using the Giphy API to demonstrate a user
-request being generated into the DOM with AJAX behind the scenes. For this project I 
+request being generated into the DOM with AJAX behind the scenes. For this project I
 wanted to theme the gif requests around coffee. I typically code my homework with a
 blonde roast latte at Starbucks anyway, so I decided to unofficially adopt their color
 palette into my project.
-
 
 ### Skills Learned
 
@@ -42,15 +41,15 @@ I learned on the fly:
 
 ### Comments
 
-The biggest feature I added that I am most proud of would have to be the drag and 
+The biggest feature I added that I am most proud of would have to be the drag and
 drop feature. I did not learn this event handler in bootcamp at all. Let me breakdown
 in simple terms what is happening behind the scenes. Each button in the "Topic" section
-is located in an array. The moment you drag a button into the "Favorites" section, it 
-removes itself from the topics array and moves into the favorites array. Each time the 
-user orders a new giffee, the javascript is checking to see if the user input is already 
-located within the topics array or the favorites array. It will not generate a duplicate 
+is located in an array. The moment you drag a button into the "Favorites" section, it
+removes itself from the topics array and moves into the favorites array. Each time the
+user orders a new giffee, the javascript is checking to see if the user input is already
+located within the topics array or the favorites array. It will not generate a duplicate
 button. This project was fun and easy except for the download feature, which proved the
-hardest to code because of browser restrictions that prevented cross-origin downloads. 
+hardest to code because of browser restrictions that prevented cross-origin downloads.
 Therefore, I was eventually able to find a workaround with some help and google searching.
 
 **I encourage you to check out the mobile responsiveness of the application.**
